@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+
 public class InventoryList {
     private ArrayList<InventoryItem> inventoryList = new ArrayList<>();
     private Map<InventoryItem, String> itemBarcodes = new HashMap<>();
