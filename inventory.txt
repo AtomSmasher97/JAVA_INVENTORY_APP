@@ -1,2 +1,1 @@
-Milk
-Bread
+Milk,2,2.99,Liquid

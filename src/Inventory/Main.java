@@ -59,9 +59,6 @@ public class Main {
         System.out.println("Please enter the item name: ");
         String itemName = scanner.nextLine();
 
-        System.out.println("Please enter the item name: ");
-        String name = scanner.nextLine();
-
         System.out.println("Please enter the item quantity: ");
         int quantity = scanner.nextInt();
         scanner.nextLine();
@@ -73,19 +70,32 @@ public class Main {
         System.out.println("Please enter the item category: ");
         String category = scanner.nextLine();
 
-        inventoryList.addInventoryItem(name, quantity, price, category);
+        inventoryList.addInventoryItem(itemName, quantity, price, category);
 
-
-        System.out.println("Item added successfully with barcode: " + inventoryList.getBarcodeForItem(itemName));
+        System.out.println("Item added successfully with barcode: " + inventoryList.getBarcodeForItem(inventoryList.findItem(itemName)));
     }
 
     public static void modifyItem() {
         System.out.println("Enter the item number: ");
         int itemNo = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter the replacement item: ");
-        String newItem = scanner.nextLine();
-        inventoryList.modifyInventoryItem(scanner, itemNo - 1, newItem);
+
+        System.out.println("Enter the replacement item name: ");
+        String newItemName = scanner.nextLine();
+
+        System.out.println("Enter the replacement item quantity: ");
+        int newQuantity = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Enter the replacement item price: ");
+        double newPrice = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.println("Enter the replacement item category: ");
+        String newCategory = scanner.nextLine();
+
+        InventoryItem newItem = new InventoryItem(newItemName, newQuantity, newPrice, newCategory);
+        inventoryList.modifyInventoryItem(itemNo - 1, newItem);
     }
 
     public static void removeItem() {
@@ -96,11 +106,16 @@ public class Main {
     }
 
     public static void searchForItem() {
-        System.out.println("What are you searching for? ");
+        System.out.println("What item are you searching for? ");
         String searchItem = scanner.nextLine();
-        String foundItem = inventoryList.findItem(searchItem);
+        InventoryItem foundItem = inventoryList.findItem(searchItem);
         if (foundItem != null) {
+            String barcode = inventoryList.getBarcodeForItem(foundItem);
             System.out.println("Found " + searchItem + " in the Inventory List");
+            System.out.println("Barcode: " + barcode);
+            System.out.println("Quantity: " + foundItem.getQuantity());
+            System.out.println("Price: " + foundItem.getPrice());
+            System.out.println("Category: " + foundItem.getCategory());
         } else {
             System.out.println("The item you are looking for doesn't exist.");
         }

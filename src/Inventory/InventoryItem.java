@@ -1,4 +1,10 @@
 package Inventory;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class InventoryItem {
     private String name;
@@ -15,6 +21,10 @@ public class InventoryItem {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {
